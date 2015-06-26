@@ -3,6 +3,6 @@
 Requirements
 ------------
 
-  * Centos 7, Ubuntu 14.04
+  * Centos/Oracle/RHEL 7, Ubuntu 14.04
   * Elasticsearch
   * Python >= 2.7
