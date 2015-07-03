@@ -3,16 +3,21 @@ SHELL=/bin/bash
 NAME = metrilyx
 VERSION = 3.0.0
 
+REPO_URL_BASE = https://packagecloud.io/install/repositories/metrilyx/metrilyx
+
 BUILD_BASE_DIR = ./build
 BUILD_DIR = ${BUILD_BASE_DIR}/${NAME}
 
+APT_REPO_DIR = ${BUILD_DIR}/ubuntu/etc/apt/sources.list.d
+YUM_REPO_DIR = ${BUILD_DIR}/el/etc/yum.repos.d
+
 .build_yum_repo:
-  [ -d ${BUILD_DIR}/el/etc ] || mkdir -p ${BUILD_DIR}/el/etc
-  cp -a etc/yum.repos.d ${BUILD_DIR}/el/etc/
-  
+  [ -d ${YUM_REPO_DIR} ] || mkdir -p ${YUM_REPO_DIR}
+  curl -o ${YUM_REPO_DIR}/metrilyx.repo "${REPO_URL_BASE}?config_file.repo&dist=7&os=el"
+
 .build_apt_repo:
-  [ -d ${BUILD_DIR}/ubuntu/etc ] || mkdir -p ${BUILD_DIR}/ubuntu/etc
-  cp -a etc/apt ${BUILD_DIR}/ubuntu/etc/
+  [ -d ${APT_REPO_DIR} ] || mkdir -p {$APT_REPO_DIR}
+  curl -o ${APT_REPO_DIR}/metrilyx.list "${REPO_URL_BASE}?config_file.list&dist=trusty&os=ubuntu"
 
 .rpm:
   [ -d ${BUILD_BASE_DIR}/el ] || mkdir -p ${BUILD_BASE_DIR}/el
