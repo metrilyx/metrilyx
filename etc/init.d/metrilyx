@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# description: Metrilyx component/processe manager (dashboarder, dataserver, cacher)
+#
+
+[ -f "/etc/rc.d/init.d/functions" ] && . /etc/rc.d/init.d/functions
+
+[ -f "/etc/sysconfig/metrilyx" ] && . /etc/sysconfig/metrilyx
+
+NAME="metrilyx"
+METRILYX_HOME="/opt/metrilyx"
+
+SERVICE_START_ORDER="metrilyx-cacher metrilyx-dataserver metrilyx-dashboarder"
+SERVICE_STOP_ORDER="metrilyx-cacher metrilyx-dataserver metrilyx-dashboarder"
+
+
+check_paths() {
+    [ -d "${METRILYX_HOME}/log" ] || { mkdir -m 0775 "${METRILYX_HOME}/log"; }
+    [ -d "${METRILYX_HOME}/run" ] || { mkdir -m 0775 "${METRILYX_HOME}/run"; }
+    #[ -d "${METRILYX_HOME}/log" ] || { mkdir -m 0775 "${METRILYX_HOME}/log"; chgrp $NGINX_USER "${METRILYX_HOME}/log"; }
+    #[ -d "${METRILYX_HOME}/run" ] || { mkdir -m 0775 "${METRILYX_HOME}/run"; chgrp $NGINX_USER "${METRILYX_HOME}/run"; }
+}
+
+start() {
+    for service in ${SERVICE_START_ORDER}; do
+        service $service start
+    done
+}
+status() {
+    for service in ${SERVICE_START_ORDER}; do
+        service $service status
+    done
+}
+stop() {
+    for service in ${SERVICE_STOP_ORDER}; do
+        service $service stop
+    done
+}
+
+### Main ###
+check_paths;
+
+case "$1" in
+    start)
+        start;
+        ;;
+    stop)
+        stop;
+        ;;
+    restart)
+        stop;
+        sleep 3
+        start;
+        ;;
+    status)
+        status;
+        ;;
+    *)
+        echo "$0 [ start | stop | restart | status ]"
+        exit 1;
+esac
+exit 0
