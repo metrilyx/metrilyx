@@ -9,3 +9,12 @@ Requirements
   * Centos/Oracle/RHEL 7, Ubuntu 14.04
   * Elasticsearch
   * Python >= 2.7
+
+OS Packages
+-----------
+All required packages are available under the metrilyx repository.  The packages are as follows:
+
+ * python-pandas
+ * python-opentsdb-pandas
+ * metrilyx-dataserver
+ * metrilyx-dashboarder
