@@ -29,4 +29,3 @@ notifications:
     slack:
         rooms:
           - ticketmaster:E5CXbILXq45Y5LYcsO8BD3B3#metrilyx
-          - ticketmaster:E5CXbILXq45Y5LYcsO8BD3B3#infradev
