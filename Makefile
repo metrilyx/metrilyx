@@ -26,7 +26,7 @@ YUM_REPO_DIR = ${BUILD_DIR}/el/etc/yum.repos.d
 
 .repo_rpm:
 	[ -d ${BUILD_BASE_DIR}/el ] || mkdir -p ${BUILD_BASE_DIR}/el
-	cd ${BUILD_DIR}/el && fpm -s dir -t rpm -d pygpgme -n ${NAME}-repo ../../${BUILD_DIR}/el
+	cd ${BUILD_BASE_DIR}/el && fpm -s dir -t rpm -d pygpgme -n ${NAME}-repo ../../${BUILD_DIR}/el
   
 .repo_deb:
 	[ -d ${BUILD_BASE_DIR}/ubuntu ] || mkdir -p ${BUILD_BASE_DIR}/ubuntu
