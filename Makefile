@@ -24,18 +24,26 @@ YUM_REPO_DIR = ${BUILD_DIR}/el/etc/yum.repos.d
 	[ -d ${APT_REPO_DIR} ] || mkdir -p ${APT_REPO_DIR}
 	curl -s "${REPO_URL_BASE}/config_file.list?dist=trusty&os=ubuntu&source=script" -o ${APT_REPO_DIR}/metrilyx.list
 
+.build: .clean .build_yum_repo .build_apt_repo
+
 .repo_rpm:
+	cd ${BUILD_DIR}/el && fpm -s dir -t rpm -d pygpgme -n ${NAME}-repo ./etc
 	[ -d ${BUILD_BASE_DIR}/el ] || mkdir -p ${BUILD_BASE_DIR}/el
-	cd ${BUILD_BASE_DIR}/el && fpm -s dir -t rpm -d pygpgme -n ${NAME}-repo ../../${BUILD_DIR}/el
+	mv ${BUILD_DIR}/el/*.rpm ${BUILD_BASE_DIR}/el/
   
 .repo_deb:
+	cd ${BUILD_DIR}/ubuntu && fpm -s dir -t deb -d apt-transport-https -n ${NAME}-repo ./etc
 	[ -d ${BUILD_BASE_DIR}/ubuntu ] || mkdir -p ${BUILD_BASE_DIR}/ubuntu
-	cd ${BUILD_BASE_DIR}/ubuntu && fpm -s dir -t deb -d apt-transport-https -n ${NAME}-repo ../../${BUILD_DIR}/ubuntu
+	mv ${BUILD_DIR}/ubuntu/*.deb ${BUILD_BASE_DIR}/ubuntu/
   
 .rpm:
-	cd ${BUILD_BASE_DIR}/ubuntu && fpm -s dir -t rpm -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ../../etc/init.d/metrilyx
+	fpm -s dir -t rpm -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ./etc
+	[ -d ${BUILD_BASE_DIR}/el ] || mkdir -p ${BUILD_BASE_DIR}/el
+	mv *.rpm ${BUILD_BASE_DIR}/el/
 
 .deb:
-	cd ${BUILD_BASE_DIR}/ubuntu && fpm -s dir -t deb -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ../../etc/init.d/metrilyx
+	fpm -s dir -t deb -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ./etc
+	[ -d ${BUILD_BASE_DIR}/ubuntu ] || mkdir -p ${BUILD_BASE_DIR}/ubuntu
+	mv *.deb ${BUILD_BASE_DIR}/ubuntu/
 
-all: .clean .build_yum_repo .build_apt_repo .rpm .deb
+all: .build .repo_rpm .repo_deb .rpm .deb
