@@ -1,5 +1,8 @@
 # metrilyx
 
+
+This project is used to build the repository rpm as well as a wrapper package dependent on other sub-components.
+
 Requirements
 ------------
 
