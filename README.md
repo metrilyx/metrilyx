@@ -23,6 +23,7 @@ Installation
 ------------
 The installation steps involve downloading the metrilyx package repository, followed by the package installation.
 
+
 Enterprise Linux 7:
 
 * Download repo. package:
@@ -33,9 +34,13 @@ Enterprise Linux 7:
 
     yum -y install metrilyx-repo-1.0-1.x86_64.rpm
 
-* Install metrilyx:
+* Install metrilyx and it's dependencies:
 
     yum -y install metrilyx
+
+* Install dataserver:
+
+    pip install git+https://github.com/metrilyx/metrilyx-dataserver --process-dependency-links
 
 
 Ubuntu 14.04:
@@ -48,6 +53,11 @@ Ubuntu 14.04:
 
     dpkg -i metrilyx-repo_1.0_amd64.deb
     
-* Install metrilyx:
+* Install metrilyx and it's dependencies:
 
     apt-get -y install metrilyx
+
+* Install dataserver:
+
+    pip install git+https://github.com/metrilyx/metrilyx-dataserver --process-dependency-links
+
