@@ -7,7 +7,7 @@ BUILD_BASE_DIR = ./build
 BUILD_DIR = ${BUILD_BASE_DIR}/${NAME}
 
 FPM_MET_DEP_OPTS = -d 'metrilyx-dashboarder >= 3.0.0' -d gcc -d make -d python-setuptools -d git
-FPM_MET_RPM_DEPS = -d 'python-twisted-core' -d 'numpy >= 1.7' -d libuuid -d python-devel -d gcc-g++ -d gcc-gfortran -d libffi-devel
+FPM_MET_RPM_DEPS = -d 'python-twisted-core' -d 'numpy >= 1.7' -d libuuid -d python-devel -d gcc-c++ -d gcc-gfortran -d libffi-devel
 FPM_MET_DEB_DEPS = -d 'python-twisted' -d 'python-numpy >= 1.7' -d libuuid1 -d python-dev -d g++ -d gfortran -d libffi-dev
 
 
