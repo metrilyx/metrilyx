@@ -6,7 +6,10 @@ VERSION = 3.0.0
 BUILD_BASE_DIR = ./build
 BUILD_DIR = ${BUILD_BASE_DIR}/${NAME}
 
-FPM_MET_DEP_OPTS = -d 'metrilyx-dashboarder >= 3.0.0' -d 'python-metrilyx-dataserver >= 3.0.0'
+FPM_MET_DEP_OPTS = -d 'metrilyx-dashboarder >= 3.0.0'
+FPM_MET_RPM_DEPS = -d 'python-twisted-core' -d 'numpy >= 1.7' -d libuuid
+FPM_MET_DEB_DEPS = -d 'python-twisted' -d 'python-numpy >= 1.7' -d libuuid1
+
 
 REPO_URL_BASE = https://packagecloud.io/install/repositories/metrilyx/metrilyx
 APT_REPO_DIR = ${BUILD_DIR}/ubuntu/etc/apt/sources.list.d
@@ -37,13 +40,13 @@ YUM_REPO_DIR = ${BUILD_DIR}/el/etc/yum.repos.d
 	mv ${BUILD_DIR}/ubuntu/*.deb ${BUILD_BASE_DIR}/ubuntu/
   
 .rpm:
-	fpm -s dir -t rpm -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ./etc
+	fpm -s dir -t rpm -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ${FPM_MET_RPM_DEPS} ./etc
 	[ -d ${BUILD_BASE_DIR}/el ] || mkdir -p ${BUILD_BASE_DIR}/el
 	mv *.rpm ${BUILD_BASE_DIR}/el/
 
 .deb:
-	fpm -s dir -t deb -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ./etc
+	fpm -s dir -t deb -n ${NAME} --version ${VERSION} ${FPM_MET_DEP_OPTS} ${FPM_MET_DEB_DEPS} ./etc
 	[ -d ${BUILD_BASE_DIR}/ubuntu ] || mkdir -p ${BUILD_BASE_DIR}/ubuntu
 	mv *.deb ${BUILD_BASE_DIR}/ubuntu/
 
-all: .build .repo_rpm .repo_deb .rpm .deb
+all: .clean .build .repo_rpm .repo_deb .rpm .deb

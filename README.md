@@ -25,13 +25,29 @@ The installation steps involve downloading the metrilyx package repository, foll
 
 Enterprise Linux 7:
 
+* Download repo. package:
+    
     curl -L https://packagecloud.io/metrilyx/metrilyx/packages/el/7/metrilyx-repo-1.0-1.x86_64.rpm/download -o metrilyx-repo-1.0-1.x86_64.rpm
+
+* Install repo. package:
+
     yum -y install metrilyx-repo-1.0-1.x86_64.rpm
+
+* Install metrilyx:
+
     yum -y install metrilyx
 
 
 Ubuntu 14.04:
 
+* Download repo. package:
+
     curl -L https://packagecloud.io/metrilyx/metrilyx/packages/ubuntu/trusty/metrilyx-repo_1.0_amd64.deb/download -o metrilyx-repo_1.0_amd64.deb
+
+* Install repo. package:
+
     dpkg -i metrilyx-repo_1.0_amd64.deb
+    
+* Install metrilyx:
+
     apt-get -y install metrilyx
