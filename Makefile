@@ -6,9 +6,9 @@ VERSION = 3.0.0
 BUILD_BASE_DIR = ./build
 BUILD_DIR = ${BUILD_BASE_DIR}/${NAME}
 
-FPM_MET_DEP_OPTS = -d 'metrilyx-dashboarder >= 3.0.0'
-FPM_MET_RPM_DEPS = -d 'python-twisted-core' -d 'numpy >= 1.7' -d libuuid
-FPM_MET_DEB_DEPS = -d 'python-twisted' -d 'python-numpy >= 1.7' -d libuuid1
+FPM_MET_DEP_OPTS = -d 'metrilyx-dashboarder >= 3.0.0' -d gcc -d make -d python-setuptools
+FPM_MET_RPM_DEPS = -d 'python-twisted-core' -d 'numpy >= 1.7' -d libuuid -d python-devel
+FPM_MET_DEB_DEPS = -d 'python-twisted' -d 'python-numpy >= 1.7' -d libuuid1 -d python-dev
 
 
 REPO_URL_BASE = https://packagecloud.io/install/repositories/metrilyx/metrilyx
@@ -49,4 +49,4 @@ YUM_REPO_DIR = ${BUILD_DIR}/el/etc/yum.repos.d
 	[ -d ${BUILD_BASE_DIR}/ubuntu ] || mkdir -p ${BUILD_BASE_DIR}/ubuntu
 	mv *.deb ${BUILD_BASE_DIR}/ubuntu/
 
-all: .clean .build .repo_rpm .repo_deb .rpm .deb
+all: .build .repo_rpm .repo_deb .rpm .deb
