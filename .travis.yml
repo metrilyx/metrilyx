@@ -1,35 +1,29 @@
-
 before_install:
-  - sudo apt-get -y update
-  - sudo apt-get -y install ruby ruby-dev make rpm rubygems curl
-  - gem install fpm --no-ri --no-rdoc
-
+- sudo apt-get -y update
+- sudo apt-get -y install ruby ruby-dev make rpm rubygems curl
+- gem install fpm --no-ri --no-rdoc
 script:
-  - make
+- make
 
 deploy:
   - provider: packagecloud
     repository: metrilyx
     username: metrilyx
-    local-dir: "build/ubuntu"
-    dist: "ubuntu/trusty"
+    local-dir: build/ubuntu
+    dist: ubuntu/trusty
     skip_cleanup: true
     token:
-      secure: bTTh7hOUhiEqms5LgzYBcoUjLLKvVyyj5Cj9E/uuaVn34CJvhHAewDnzkb5NULfc3ahoVvWoJkSyu/F7B6jrDn/TSmeP/QCcTaozY43sv8C6lofw9ZkZBQT/f6UdP3hcu/n+zNRQMwGlc2W3oLX06RjaPIdPsqWOiblnL+D1Im7ETgf4A9nY8DpLtFZAaq0mmLPQOuvWWSlD5hNkMoI7V2LFHwJ8KagLq8+QGCYJIB+vN/q2KFF9l68MG8ZgXma+7E/qQFmeR4+RLLVm+vI4oxi2BYn0l0zR+WNn1EAlauAkkLtdNL5gzIe/IMNIv5709bqNxSMpRnzi03UpZ6VhlzFcTP8AAmReWw+NoAY734MIXd9B8Jdvu/brlTUC4DGkcw+hzLhyJRBS3JjlRmYq9ghUPelXyhCopjCoQydGYu5WN1bpjORcFKTNycwFJTq/KHtGAicz12/fj6c9TNJD+EghgExoPANKxbO+qHQUm+pEwRnE5hDdtL/8ELsqiY9Zcg7fkjcv6jdO+YWiWy3JDcZ6kNLX10LU14RH9f0o2uExRBKcsD87Z9F590foqYMkQu2s0D51eV508KEt6QMD9u4w+mIKceDPhyiFmC8TclBkLQzKSVMMMJcA3BRneOxoQnNys2J1PwKeMdZhW4XC4ouCgCM5InELS9LSgFdHsqg=
-    on:
-      tags: true
+      secure: lgwlvLbyBZmUFIwdWIViI8SFQi/I0gSOmeVi/VKxHL3jRWsKG8mKyGLssO1Lw4y5ifdGQvQK+qo3iulkwfKUAmzfghwVxoMmYvasRcMJ/FWi/fy+3pVsU0rPZQN2fIRvb4ZKdCnfrlx/kzXePivCk27bS7d0giGFRd6MaMB5uwDYS1EHHOBlaQr1tc9dj+0zN5NO53fwUb8InomSKCzHXZKdqrsPj/jmlpsIHOuMEZbYiVRqy2zJ2utDJTROCnvdOFC90SqgFnxr4hBof3sunSs+9rTB/ycfCmzfswi9+FAPh56ArFH/Xq+VXxESMWGrnAGG/a6eyowA+vSp+bg4x52gtB7SntPzmA8qahHoDg6ZrRCfDdmbzrYIMvilHp+LdT1psUqw0qOSDwu4GmhHrZCfpxybl+RNKCAVzq8DkM2I4wKBoSFF3McTNL97jvgDH+7QcnRG93FubQ2aVsBqkGVbd/z0rCSainr3mE7s/09eqWf/OwRDxYA7U+EsiZt5nq0QF8YN8sgQjb0QUDTcm5jK50ah0U1pA+gmeitPXIPnA4TQslgZ1m0MK8hUpburBYvM+iowoOYYTEg39WHGvbaDhW53rHYLI3E/SgjMsUkZI1ClFO4lyy1m1rfPCBqT2wDN1rghlyNWXV6FvNiimoU1agPSlrUQ+FB0cqHq4nI=
   - provider: packagecloud
     repository: metrilyx
     username: metrilyx
-    local-dir: "build/el"
-    dist: "el/7"
+    local-dir: build/el
+    dist: el/7
     skip_cleanup: true
     token:
-      secure: bTTh7hOUhiEqms5LgzYBcoUjLLKvVyyj5Cj9E/uuaVn34CJvhHAewDnzkb5NULfc3ahoVvWoJkSyu/F7B6jrDn/TSmeP/QCcTaozY43sv8C6lofw9ZkZBQT/f6UdP3hcu/n+zNRQMwGlc2W3oLX06RjaPIdPsqWOiblnL+D1Im7ETgf4A9nY8DpLtFZAaq0mmLPQOuvWWSlD5hNkMoI7V2LFHwJ8KagLq8+QGCYJIB+vN/q2KFF9l68MG8ZgXma+7E/qQFmeR4+RLLVm+vI4oxi2BYn0l0zR+WNn1EAlauAkkLtdNL5gzIe/IMNIv5709bqNxSMpRnzi03UpZ6VhlzFcTP8AAmReWw+NoAY734MIXd9B8Jdvu/brlTUC4DGkcw+hzLhyJRBS3JjlRmYq9ghUPelXyhCopjCoQydGYu5WN1bpjORcFKTNycwFJTq/KHtGAicz12/fj6c9TNJD+EghgExoPANKxbO+qHQUm+pEwRnE5hDdtL/8ELsqiY9Zcg7fkjcv6jdO+YWiWy3JDcZ6kNLX10LU14RH9f0o2uExRBKcsD87Z9F590foqYMkQu2s0D51eV508KEt6QMD9u4w+mIKceDPhyiFmC8TclBkLQzKSVMMMJcA3BRneOxoQnNys2J1PwKeMdZhW4XC4ouCgCM5InELS9LSgFdHsqg=
-    on:
-      tags: true
+      secure: lgwlvLbyBZmUFIwdWIViI8SFQi/I0gSOmeVi/VKxHL3jRWsKG8mKyGLssO1Lw4y5ifdGQvQK+qo3iulkwfKUAmzfghwVxoMmYvasRcMJ/FWi/fy+3pVsU0rPZQN2fIRvb4ZKdCnfrlx/kzXePivCk27bS7d0giGFRd6MaMB5uwDYS1EHHOBlaQr1tc9dj+0zN5NO53fwUb8InomSKCzHXZKdqrsPj/jmlpsIHOuMEZbYiVRqy2zJ2utDJTROCnvdOFC90SqgFnxr4hBof3sunSs+9rTB/ycfCmzfswi9+FAPh56ArFH/Xq+VXxESMWGrnAGG/a6eyowA+vSp+bg4x52gtB7SntPzmA8qahHoDg6ZrRCfDdmbzrYIMvilHp+LdT1psUqw0qOSDwu4GmhHrZCfpxybl+RNKCAVzq8DkM2I4wKBoSFF3McTNL97jvgDH+7QcnRG93FubQ2aVsBqkGVbd/z0rCSainr3mE7s/09eqWf/OwRDxYA7U+EsiZt5nq0QF8YN8sgQjb0QUDTcm5jK50ah0U1pA+gmeitPXIPnA4TQslgZ1m0MK8hUpburBYvM+iowoOYYTEg39WHGvbaDhW53rHYLI3E/SgjMsUkZI1ClFO4lyy1m1rfPCBqT2wDN1rghlyNWXV6FvNiimoU1agPSlrUQ+FB0cqHq4nI=
 
 notifications:
-    slack:
-        rooms:
-          - ticketmaster:E5CXbILXq45Y5LYcsO8BD3B3#metrilyx
+  slack:
+    rooms:
+    - ticketmaster:E5CXbILXq45Y5LYcsO8BD3B3#metrilyx

@@ -6,7 +6,7 @@ VERSION = 3.0.0
 BUILD_BASE_DIR = ./build
 BUILD_DIR = ${BUILD_BASE_DIR}/${NAME}
 
-FPM_MET_DEP_OPTS = -d 'metrilyx-dashboarder >= 3.0.0' -d 'metrilyx-dataserver >= 3.0.0'
+FPM_MET_DEP_OPTS = -d 'metrilyx-dashboarder >= 3.0.0' -d 'python-metrilyx-dataserver >= 3.0.0'
 
 REPO_URL_BASE = https://packagecloud.io/install/repositories/metrilyx/metrilyx
 APT_REPO_DIR = ${BUILD_DIR}/ubuntu/etc/apt/sources.list.d

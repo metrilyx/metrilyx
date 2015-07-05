@@ -12,9 +12,26 @@ Requirements
 
 OS Packages
 -----------
-All required packages are available under the metrilyx repository.  The packages are as follows:
+All required packages are available under the metrilyx repository.  The required packages are as follows:
 
  * python-pandas
  * python-opentsdb-pandas
  * metrilyx-dataserver
  * metrilyx-dashboarder
+
+Installation
+------------
+The installation steps involve downloading the metrilyx package repository, followed by the package installation.
+
+Enterprise Linux 7:
+
+    curl -L https://packagecloud.io/metrilyx/metrilyx/packages/el/7/metrilyx-repo-1.0-1.x86_64.rpm/download -o metrilyx-repo-1.0-1.x86_64.rpm
+    yum -y install metrilyx-repo-1.0-1.x86_64.rpm
+    yum -y install metrilyx
+
+
+Ubuntu 14.04:
+
+    curl -L https://packagecloud.io/metrilyx/metrilyx/packages/ubuntu/trusty/metrilyx-repo_1.0_amd64.deb/download -o metrilyx-repo_1.0_amd64.deb
+    dpkg -i metrilyx-repo_1.0_amd64.deb
+    apt-get -y install metrilyx
