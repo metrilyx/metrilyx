@@ -10,15 +10,6 @@ Requirements
   * Elasticsearch
   * Python >= 2.7
 
-OS Packages
------------
-All required packages are available under the metrilyx repository.  The required packages are as follows:
-
- * python-pandas
- * python-opentsdb-pandas
- * metrilyx-dataserver
- * metrilyx-dashboarder
-
 Installation
 ------------
 The installation steps involve downloading the metrilyx package repository, followed by the package installation.
